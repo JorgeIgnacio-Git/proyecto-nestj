@@ -1,98 +1,147 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Proyecto NestJS API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Backend basado en [NestJS](https://nestjs.com/) con TypeScript, validación de datos, documentación Swagger, testing con Jest, linters y formateo de código. Ideal para APIs estructuradas, seguras y fácilmente escalables siguiendo buenas prácticas modernas.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Características principales
 
-## Description
+- NestJS + TypeScript
+- Prisma ORM
+- PostgreSQL como base de datos
+- Validación de datos con class-validator
+- Documentación automática con Swagger
+- Testing con Jest
+- Linters y Prettier para calidad de código
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+---
 
-## Project setup
+## Requisitos previos
+
+- [Node.js](https://nodejs.org/) >= 18.x
+- [npm](https://www.npmjs.com/) >= 9.x
+- [PostgreSQL](https://www.postgresql.org/) >= 13.x
+- [Prisma CLI](https://www.prisma.io/docs/reference/api-reference/command-reference)
+
+---
+
+## Instalación
+
+1. **Clona el repositorio:**
+
+   ```bash
+   git clone https://github.com/JorgeIgnacio-Git/proyecto-nestj.git
+   cd proyecto-nestj
+   ```
+
+2. **Instala las dependencias:**
+
+   ```bash
+   npm install
+   ```
+
+3. **Crea el archivo de variables de entorno:**
+
+   Copia el archivo de ejemplo y edítalo con tus datos:
+   ```bash
+   cp .env.example .env
+   ```
+   Edita el archivo `.env` y configura la variable `DATABASE_URL` con tus credenciales de PostgreSQL, por ejemplo:
+   ```
+   DATABASE_URL="postgresql://usuario:contraseña@localhost:5432/mi_base_de_datos"
+   ```
+
+---
+
+## Configuración de la base de datos y Prisma
+
+1. **Asegúrate de que el servidor de PostgreSQL esté corriendo y la base de datos exista.**
+
+2. **Ejecuta las migraciones para crear las tablas:**
+
+   ```bash
+   npx prisma migrate dev --name init
+   ```
+
+3. **Genera el cliente de Prisma:**
+
+   ```bash
+   npx prisma generate
+   ```
+
+---
+
+## Ejecución en desarrollo
 
 ```bash
-$ npm install
+npm run start:dev
 ```
 
-## Compile and run the project
+El servidor estará disponible en [http://localhost:3000](http://localhost:3000).
+
+---
+
+## Documentación Swagger
+
+Una vez en ejecución, accede a la documentación interactiva en:  
+[http://localhost:3000/api](http://localhost:3000/api)
+
+---
+
+## Testing
+
+Para correr los tests:
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+npm run test
 ```
 
-## Run tests
+---
 
-```bash
-# unit tests
-$ npm run test
+## Linter y formateo
 
-# e2e tests
-$ npm run test:e2e
+- Para ejecutar ESLint:
+  ```bash
+  npm run lint
+  ```
+- Para formatear el código con Prettier:
+  ```bash
+  npm run format
+  ```
 
-# test coverage
-$ npm run test:cov
+---
+
+## Scripts útiles
+
+- `npm run start` - Inicia la app en modo producción
+- `npm run start:dev` - Inicia la app en modo desarrollo con recarga
+- `npm run test` - Ejecuta los tests unitarios
+- `npm run lint` - Corre el linter
+- `npm run format` - Formatea el código
+
+---
+
+## Estructura básica del proyecto
+
+```
+proyecto-nestj/
+├── src/
+├── prisma/
+│   └── schema.prisma
+├── test/
+├── .env.example
+├── package.json
+└── README.md
 ```
 
-## Deployment
+---
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+## Notas
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+- Si cambias el archivo `prisma/schema.prisma`, ejecuta `npx prisma generate` para actualizar el cliente.
+- Puedes modificar las migraciones según tus necesidades con `npx prisma migrate dev`.
+- Asegúrate de mantener tu archivo `.env` fuera del control de versiones por seguridad.
 
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
-```
+---
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+## Licencia
 
-## Resources
-
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+Este proyecto se distribuye bajo la licencia UNLICENSED.  
